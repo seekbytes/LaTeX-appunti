@@ -4091,5 +4091,175 @@ che esegue}).
     \rho[\rho'] \vdash_{\Delta[\Delta']} \langle c, \sigma\rangle \rightarrow_c \sigma'
   }
 \]
+\chapter{Procedure}
+\section{Introduzione}
+L'uso delle procedure permette la così detta \textbf{astrazione del controllo}, astrarre 
+significa nascondere dettagli concreti facendo emergere con più chiarezza concetti comuni.
+\section{Astrazione del controllo}
+Il processo di astrazione consiste, come già detto, nel raggruppamento 
+di oggetti complicati rispetto a qualche caratterizzazione specifica legata a motivi logici 
+o di convenienza.
+
+Parte essenziale del processo di astrazione consiste nel dare al raggruppamento 
+un \textbf{nome}. Introdurre nomi significa introdurre nuovi legami che permettono 
+di interpretare i nomi stessi durante l'esecuzione.
+Il nome è un aspetto fondamentale per l'astrazione del controllo, in quanto permette di distinguere le astrazioni dai semplici blocchi 
+inline. Quindi l'astrazione prende oggetti complessi e ne nasconde i dettagli, e grazie al nome 
+li può riutilizzare e richiamare.
+\subsection{Procedure}
+Nel processo di astrazione del controllo, quello che viene fatto consiste essenzialmente nel legare, negli 
+ambienti, una sequenza di comandi ad un identificatore.
+
+Mantenendo solo un nome e un corpo potremmo però associare solo esecuzioni costanti.
+Per rendere l'esecuzione dipendente da altri elementi validi al momento della chiamata abbiamo bisogno
+di parametri. I \textbf{parametri} permettono infetti l'astrazione di tante computazioni simili.
+Nome e parametri formano l'\textbf{interfaccia} dell'astrazione, ovvero tutto c
+iò che è necessario conoscere per poter usare correttamente la procedura, mentre 
+il corpo è proprio l'informazione che viene astratta.
+
+Il \textbf{corpo} è ciò invece che viene valutato/elaborato/eseguito ogni qualvolta il nome è richiamato,
+con appropriati parametri, in qualche punto di programma. Sul corpo non c'è molto 
+da ride essendo analogo ai blocchi senza nome, semplicemente incapsula 
+una sequenza di comandi di una interfaccia.
+
+L'uso delle procedure di basa sulla chiamata di un nome quando dobbiamo 
+eseguire il suo corpo. Il processo di chiamata si basa su due passi:
+\begin{enumerate}
+  \item Il programma chiamante viene sospeso durante l'esecuzione del programma chiamato;
+  \item Il controllo ritorna sempre al chiamante quando l'esecuzione del chiamato termina.
+\end{enumerate}
+\subsection{Funzioni e procedure}
+Quando si parla di astrazione del controllo nei linguaggi di programmazione ci sono in realtà 
+due categorie di sottoprogrammi con nome che possiamo definire.
+\begin{tcolorbox}[title ={Procedure}]
+  Le procedure sono collezioni di comandi che definiscono una computazione parametrizzata. È una 
+  procedura ogni forma di astrazione di comandi che ha un nome senza necessariamente 
+  restituire un risultato, ma solo una modifica di stato.
+\end{tcolorbox}
+\begin{tcolorbox}[title = {Funzioni}]
+  Le funzioni hanno una struttura simile alle procedure ma sono semanticamente 
+  modellate come funzioni. Le funzioni quindi restituiscono un valore dopo aver 
+  eseguito modifiche di stato. In generale, non è previsto che producano 
+  side effects, anche se nella pratica spesso accade.
+\end{tcolorbox}
+Indipendentemente dal fatto che sia funzione o procedura, il processo di astrazione fa si che, una volta 
+chiamata la funzione, possiamo ignorare i cambiamenti di stato intermedi dal punto di
+vista del programma chiamante, tenendo solo lo stato di chiamata che passa allo stato di ritorno.
+Al contrario se al posto della chiamata usassimo il suo codice, equivarrebbe a dire che nel chiamante 
+siamo interessati a tutti i cambiamenti di stato intermedi.
+\begin{tcolorbox}[title ={Sottoprogramma}]
+  Concetto base (\textit{funzione o procedura}), porzione di codice identificato da un nome, dotato 
+  di  un ambiente locale proprio e capace di scambiare informazioni con il resto del 
+  codice mediante fissati canali (\textit{parametri e/o valori di ritorno}).
+\end{tcolorbox}
+Per caratterizzare un sottoprogramma dobbiamo specificarlo e scriverlo (\textit{ovvero 
+definirlo}) e poi dobbiamo poterlo usare (\textit{chiamare}), il tutto senza conoscere il 
+contesto.
+\section{Visibilità e ambiente di riferimento}
+\begin{tcolorbox}[title ={Regola di visibilità}]
+  Una dichiarazione locale ad un blocco è visibile in quel blocco e in tutti i blocchi in esso annidati, a meno che non intervenga 
+  in tali blocchi una nuova dichiarazione dello stesso nome (\textit{che nasconde, 
+  o maschera, la precedente}).
+\end{tcolorbox}
+Vediamo ora come il concetto di scope può essere esteso il presenza di \textbf{procedure},
+cioè blocchi che sono eseguiti in posizioni diverse dalla loro definizione e in presenza di ambiente non
+locale e non globale.
+\begin{tcolorbox}[title = {Ambiente di riferimento}]
+  L'ambiente di riferimento di un comando è la collezione di tutti i 
+  nomi che sono visibili al comando.
+\end{tcolorbox}
+In alcuni linguaggi, l'ambiente di riferimento può essere costituito dalle variabili 
+locali più tutte le variabili negli scope più esterni. In altri linguaggi, 
+l'ambiente di riferimento può essere l'insieme delle variabili locali 
+più tutte quelle visibili nei sottoprogrammi attivi. In 
+generale quindi esistono diversi aspetti che determinano l'ambiente di riferimento.
+
+L'\textbf{ambiente} di rifermento di una procedura è denotato quindi da varie tipologie di regole:
+regole di \textbf{scope}, regole specifiche, regole per il \textbf{passaggio di parametri}, regole di \textbf{binding}
+che intervengono quando una procedura è passata con un parametro ad un'altra procedura.
+
+In particolare \textbf{le regole di scope e di binding servono 
+esclusivamente quando la procedura contiene un ambiente non locale}.
+\subsection{Scope statico e dinamico}
+Le regole di scope possono essere distinte in due tipologie: scope statico e scope dinamico. 
+Nel caso di scope statico gli identificatori liberi della procedura, ovvero 
+quelli del suo ambiente non locale, sono staticamente legati all'ambiente, quindi a tempo di compilazione.
+Quindi lo scope statico si basa esclusivamente sul testo del codice, e lega 
+l'identificatore al blocco che lessicamente lo contiene, ovvero in cui è stato dichiarato.
+\begin{tcolorbox}[title = {Scope statico}]
+  Un nome non locale è risolto nel blocco che testualmente lo racchiude.
+\end{tcolorbox}
+Nel caso di scoping dinamico, i legami non sono creati a tempo di compilazione, 
+ma dobbiamo eseguire il programma per individuarli e quindi i legami stessi sono dinamici, 
+si va a prendere quindi l'ultima chiamata aperta e non ancora chiusa in cui la variabile 
+è stata definita. Questo significa che diverse chiamate alla stessa procedura possono 
+essere eseguite in ambienti diversi, quindi gli stessi oggetti possono essere risolti 
+con legami differenti.
+\begin{tcolorbox}[title = {Scope dinamico}]
+  Un nome non locale è risolto nella chiamata attivata più recente e non ancora terminata.
+\end{tcolorbox}
+\begin{algorithm}
+  { int x = 0;
+    void pippo (int n) {
+      x = n + 1;
+    }
+    pippo(3);
+    write(x);
+      { int x = 0;
+        pippo(3);
+        write(x);
+      }
+    write(x);
+  }
+\end{algorithm}
+Nell'esempio, la \verb|write(x)| più interna, con lo scope statico stampa $0$, 
+mentre con scope dinamico stampa $4$.
+\subsubsection{Scope statico}
+Lo scope statico ha alcuni aspetti che lo caratterizzano. Per prima cosa garantisce l'indipendenza del 
+risultato della procedura dalla posizione. Vediamo un esempio:
+\begin{algorithm}
+  { int x = 10;
+    void foo() {
+      x++;
+    }
+    void fie() {
+      int x = 0;
+      foo();
+    }
+    fie();
+  }
+\end{algorithm}
+In questo caso, il corpo di \verb|foo| è parte dello scope della \verb|x| 
+più esterna, la chiamata di \verb|foo| è compresa nello scope della x più interna,
+\verb|foo| può essere chiamata in molti contesti diversi, lo scope statico è l'unico scope in cui \verb|foo|
+può essere compilata in modo univoco, facendo riferimento , nelle due chiamate di \verb|foo|,
+sempre alla x più esterna.
+
+Va notato che la visibilità di una dichiarazione  può seguire diverse regole fissate dal 
+linguaggio. Ad esempio in certi linguaggi una dichiarazione è visibile in tutto il blocco che la contiene, in altri solo ai 
+comandi che sono scritti sintatticamente dopo.
+
+Lo scope statico lavora bene in molte situazioni, ma presenta certi svantaggi:
+in molti casi necessita di più accessi del necessario a variabili e sottoprogrammi, 
+durante l'esecuzione del programma, non tiene conto dle fatto che la struttura iniziale 
+viene distrutta così come molte variabili locali; anche i sottoprogrammi diventano praticamente 
+globali.
+\begin{tcolorbox}[title = {Scope statico}]
+  Un nome non locale è risolto nel blocco ch testualmente lo racchiude. In tal caso l'informazione si deduce completamente dal testo del 
+  programma, ovvero le associazioni sono note a tempo di compilazione. 
+  È più complesso da implementare, ma più efficiente e soddisfa i principi di 
+  indipendenza.
+\end{tcolorbox}
+\subsubsection{Scope dinamico}
+Nello scope dinamico un nome non locale è risolto nella chiamata attivata più 
+di recente e non ancora disattivata. Quindi lo scope dinamico è basato sulla sequenza del 
+programma, e non sulla struttura del codice.
+\begin{tcolorbox}[title = {Scope dinamico}]
+  Un nome non locale è risolto nella chiamata attivata più di recente 
+  e non ancora disattivata. In tal caso, l'informazione è derivata dall'esecuzione:
+  spesso causa di programmi meno leggibili. È più semplice da implementare, ma meno efficiente.
+\end{tcolorbox}
+Va osservato che i due metodi di scope differiscono solo nel contesto delle procedure con presenza 
+di ambiente non locale e non globale.
 \end{document} 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.30)  10 MAY 2023 20:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.30)  11 MAY 2023 20:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1080,13 +1080,13 @@ Capitolo 1.
 [4
 
 ] [5] [6] [7] [8] [9] [10] [11]
-<img/macchinaAstratta.png, id=683, 800.9925pt x 570.13pt>
+<img/macchinaAstratta.png, id=725, 800.9925pt x 570.13pt>
 File: img/macchinaAstratta.png Graphic file (type png)
 <use img/macchinaAstratta.png>
 Package pdftex.def Info: img/macchinaAstratta.png  used on input line 560.
 (pdftex.def)             Requested size: 256.0748pt x 182.27133pt.
  [12 <./img/macchinaAstratta.png>] [13]
-<img/interprete.jpeg, id=703, 1060.46187pt x 384.93813pt>
+<img/interprete.jpeg, id=746, 1060.46187pt x 384.93813pt>
 File: img/interprete.jpeg Graphic file (type jpg)
 <use img/interprete.jpeg>
 Package pdftex.def Info: img/interprete.jpeg  used on input line 655.
@@ -1096,23 +1096,23 @@ Capitolo 2.
 [18
 
 ] [19] [20] [21]
-<img/imperativo.jpeg, id=774, 937.00063pt x 459.21562pt>
+<img/imperativo.jpeg, id=816, 937.00063pt x 459.21562pt>
 File: img/imperativo.jpeg Graphic file (type jpg)
 <use img/imperativo.jpeg>
 Package pdftex.def Info: img/imperativo.jpeg  used on input line 1045.
 (pdftex.def)             Requested size: 256.0748pt x 125.50339pt.
-<img/linguaggioEx.jpeg, id=775, 2143.00626pt x 615.29875pt>
+<img/linguaggioEx.jpeg, id=817, 2143.00626pt x 615.29875pt>
 File: img/linguaggioEx.jpeg Graphic file (type jpg)
 <use img/linguaggioEx.jpeg>
 Package pdftex.def Info: img/linguaggioEx.jpeg  used on input line 1050.
 (pdftex.def)             Requested size: 256.0748pt x 73.52283pt.
  [22 <./img/imperativo.jpeg>] [23 <./img/linguaggioEx.jpeg>] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34]
-<img/PL0.png, id=849, 408.52625pt x 432.61626pt>
+<img/PL0.png, id=891, 408.52625pt x 432.61626pt>
 File: img/PL0.png Graphic file (type png)
 <use img/PL0.png>
 Package pdftex.def Info: img/PL0.png  used on input line 1713.
 (pdftex.def)             Requested size: 142.26378pt x 150.65222pt.
-<img/gramm_PL0.png, id=850, 527.9725pt x 525.965pt>
+<img/gramm_PL0.png, id=892, 527.9725pt x 525.965pt>
 File: img/gramm_PL0.png Graphic file (type png)
 <use img/gramm_PL0.png>
 Package pdftex.def Info: img/gramm_PL0.png  used on input line 1718.
@@ -1163,23 +1163,27 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 3847.
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 3856.
- [74] [75] [76] [77] [78] (./Linguaggi.aux)
+ [74] [75] [76] [77] [78]
+Capitolo 6.
+[79
+
+] [80] [81] [82] [83] (./Linguaggi.aux)
 Package rerunfilecheck Info: File `Linguaggi.out' has not changed.
-(rerunfilecheck)             Checksum: 32C59F01C3A5F38726D3F6796A3489C7;18488.
+(rerunfilecheck)             Checksum: 1D2D4CB883DDC3C4F5265313A3698FF8;19596.
  ) 
 Here is how much of TeX's memory you used:
- 52343 strings out of 478268
- 1253908 string characters out of 5846347
- 1733137 words of memory out of 5000000
- 69489 multiletter control sequences out of 15000+600000
+ 52406 strings out of 478268
+ 1254717 string characters out of 5846347
+ 1737146 words of memory out of 5000000
+ 69510 multiletter control sequences out of 15000+600000
  482493 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  94i,16n,92p,1642b,1237s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb>
-Output written on Linguaggi.pdf (79 pages, 1102754 bytes).
+Output written on Linguaggi.pdf (84 pages, 1117378 bytes).
 PDF statistics:
- 1273 PDF objects out of 1440 (max. 8388607)
- 1123 compressed objects within 12 object streams
- 299 named destinations out of 1000 (max. 500000)
- 851 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1374 PDF objects out of 1440 (max. 8388607)
+ 1218 compressed objects within 13 object streams
+ 341 named destinations out of 1000 (max. 500000)
+ 907 words of extra memory for PDF output out of 10000 (max. 10000000)
 
