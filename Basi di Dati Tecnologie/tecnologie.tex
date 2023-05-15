@@ -291,8 +291,8 @@ La principale caratteristica di una transazione è che solamente se va a buon fi
 ha effetto sulla base di dati, se non va a buon fine le operazioni vengono 
 abortite, non sono quindi ammesse esecuzioni parziali.
 
-La transazione va a buon fine all'esecuzione di un \textbf{commit work}. Se 
-Non ha alcun effetto sulla base di dati viene eseguito un \textbf{rollback work}.
+La transazione va a buon fine all'esecuzione di un \verb|commit work|. Se 
+Non ha alcun effetto sulla base di dati viene eseguito un \verb|rollback work|.
 
 La transazione è ben formata se:
 \begin{itemize}
@@ -374,7 +374,7 @@ che esso svolge e alcune tecniche che applica.
     secondaria}) contenente dati e/o indici.
     \item  Le richieste di blocchi contenenti dati/indici sarà 
     l'input per il gestore dell'affidabilità (\textit{o dei guasti}) che manderà
-    in output richieste di blocchi contenenti dati/indici o blocchi del LOG.
+    in output richieste di blocchi contenenti dati/indici o blocchi del \verb|LOG|.
     \item Le richieste di blocchi contenenti dati/indici o log andranno in 
     input al gestore del buffer, in comunicazione con la memoria secondaria.
 \end{itemize}
@@ -408,10 +408,10 @@ buone prestazioni nell'accesso ai dati.
 \begin{figure}[H]
     \centering
     \includegraphics[width=15cm]{img/buffer.jpeg}
-    \caption{$B_{i,j}$ indica che nella pagina del buffer è caricato 
-    il blocco B, inoltre $i$ indica che il blocco è attualmente 
-    utilizzato da $i$ transazioni, mentre $j$ è $1$ se il blocco è stato modificato,
-    $0$ altrimenti. $L$ indica pagina libera.}
+    \caption{$\texttt{B}_{i,j}$ indica che nella pagina del buffer è caricato 
+    il blocco $\texttt{B}$, inoltre $\texttt{i}$ indica che il blocco è attualmente 
+    utilizzato da $\texttt{i}$ transazioni, mentre $\texttt{j}$ è $1$ se il blocco è stato modificato,
+    $0$ altrimenti. $\texttt{L}$ indica pagina libera.}
     \label{fig:buffer}
   \end{figure}
 Il buffer è organizzato in pagine e una pagina ha le dimensioni di un blocco della memoria
@@ -443,13 +443,13 @@ Per ogni pagina del buffer si memorizza il \textbf{blocco B} contenuto
 indicando il file e l'offset del blocco. Per ogni pagina del buffer si memorizza un insieme di 
 \textbf{variabili di stato} tra cui si trovano sicuramente:
 \begin{itemize}
-    \item Un contatore $i$ per indicare il numero di transazioni che utilizzano 
+    \item Un contatore $\verb|i|$ per indicare il numero di transazioni che utilizzano 
     le pagine.
-    \item Un bit di stato $j$ per indicare se la pagina è stata modificata o meno.
+    \item Un bit di stato $\verb|j|$ per indicare se la pagina è stata modificata o meno.
 \end{itemize}
 \subsection{Primitive per la gestione del buffer}
 
-La primitiva \textbf{fix} viene usata dalle transazioni per richiedere l'accesso 
+La primitiva \verb|fix| viene usata dalle transazioni per richiedere l'accesso 
 ad un blocco richiesto.
 
 Passi della primitiva:
@@ -461,28 +461,28 @@ Passi della primitiva:
     file e numero di blocco corrispondenti.
     \item Se non esistono pagine libere, il gestore del buffer può adottare due politiche:
     \begin{itemize}
-        \item Steal: ruba una pagina ad un'altra transazione (\textit{primitiva flush}).
+        \item Steal: ruba una pagina ad un'altra transazione (\textit{primitiva $\texttt{flush}$}).
         \item No Steal: sospende la transazione inserendola in una cosa d'attesa.
     \end{itemize}
 \end{itemize}
 Quando una transazione accede ad una pagina per la prima volta il contatore 
 si incrementa.
 
-La primitiva \textbf{setDirty} viene usata dalle transazioni per 
+La primitiva \verb|setDirty| viene usata dalle transazioni per 
 indicare al gestore del buffer che il blocco della pagina è stato 
-modificato. L'effetto è la modifica del bir di stato $J$ a $1$
+modificato. L'effetto è la modifica del bir di stato $\verb|J|$ a $1$.
 
-La primitiva \textbf{unfit} viene usata dalle transazioni per indicare che 
+La primitiva \verb|unfix| viene usata dalle transazioni per indicare che 
 la transazione ha terminato di usare il blocco. L'effetto è il decremento 
 del contatore $I$ che indica l'uso della pagina.
 
-La primitiva \textbf{force} viene usata per salvare in memoria secondaria 
+La primitiva \verb|force| viene usata per salvare in memoria secondaria 
 in modo sincrono il blocco contenuto nella pagina. L'effetto è il 
 salvataggio in memoria secondaria del blocco e il bit di stato $J$ posto a zero.
 
-La primitiva \textbf{flush} viene usata dal gestore del buffer per 
+La primitiva \verb|flush| viene usata dal gestore del buffer per 
 salvare blocchi sulla memoria secondaria in modo asincrono. Tale 
-operazione libera "dirty" (\textit{il bit di stato 
+operazione libera \textit{dirty} (\textit{il bit di stato 
 viene posto a zero}).
 \subsection{Gestore dell'affidabilità}
 \begin{figure}[H]
@@ -497,32 +497,32 @@ necessarie al ripristino della base di dati dopo eventuali malfunzionamenti.
 
 Per il suo funzionamento il gestore dell'affidabilità deve disporre di un 
 dispositivo di memoria stabile, cioè resistente a guasti.
-\subsection{Gestione del file di LOG}
-In memoria stabile viene memorizzato il file di LOG che registra in 
+\subsection{Gestione del file di $\texttt{LOG}$}
+In memoria stabile viene memorizzato il file di \verb|LOG| che registra in 
 modo sequenziale le operazioni eseguite dalle transazioni sulla base 
 di dati.
-I record memorizzati sul file di log di suddividono in record di 
+I record memorizzati sul file di \verb|LOG| di suddividono in record di 
 transazione e di sistema.
 
 I record di transazione si classificano in:
 \begin{itemize}
-    \item Begin della transazione $T$: $B(T)$.
-    \item Commit della transazione $T$: $C(T)$.
-    \item Abort della transazione $T$: $A(T)$.
-    \item Insert, Delete e Update eseguiti dalla transazione $T$ sull'oggetto $O$:
+    \item Begin della transazione $\verb|T|$: $\verb|B(T)|$.
+    \item Commit della transazione $\verb|T|$: $\verb|C(T)|$.
+    \item Abort della transazione $\verb|T|$: $\verb|A(T)|$.
+    \item Insert, Delete e Update eseguiti dalla transazione $\verb|T|$ sull'oggetto $\verb|O|$:
     \begin{itemize}
-        \item $I(T,O,AS)$: dove $AS$ indica After State.
-        \item $D(T,O,BS)$: dove $BS$ indica Before State.
-        \item $U(T,O,BS,AS)$
+        \item $\verb|I(T,O,AS)|$: dove $\verb|AS|$ indica After State.
+        \item $\verb|D(T,O,BS)|$: dove $\verb|BS|$ indica Before State.
+        \item $\verb|U(T,O,BS,AS)|$
     \end{itemize}
 \end{itemize}
 I record di transazione salvati nel LOG consentono di eseguire,
 in caso di ripristino, le seguenti operazioni:
 \begin{itemize}
-    \item \textbf{UNDO}: per disfare un'azione su un oggetto $O$ è sufficiente 
+    \item \verb|UNDO|: per disfare un'azione su un oggetto $O$ è sufficiente 
     ricopiare in $O$ il valore $BS$; l'insert/delete viene disfatto 
     cancellando/inserendo $O$.
-    \item \textbf{REDO}: per rifare un'azione su un oggetto $O$ è sufficiente 
+    \item \verb|REDO|: per rifare un'azione su un oggetto $O$ è sufficiente 
     ricopiare in $O$ il valore $AS$; l'insert/delete viene rifatto 
     cancellando/inserendo $O$.
 \end{itemize}
@@ -531,35 +531,35 @@ inseriscono duplicati}).
 
 I record di sistema:
 \begin{itemize}
-    \item Operazioni di \textbf{DUMP} della base di dati: $DUMP$.
-    \item Operazioni di \textbf{CheckPoint}: $CK(T_1,\dots,T_n)$ indica che l'esecuzione 
+    \item Operazioni di \verb|DUMP| della base di dati: $\texttt{DUMP}$.
+    \item Operazioni di \verb|CheckPoint|: $\texttt{CK}(T_1,\dots,T_n)$ indica che l'esecuzione 
     del CheckPoint le transazioni attive erano $T_1, \dots, T_n$.
     \item L'operazione svolta periodicamente dal gestore dell'affidabilità prevede:
     \begin{itemize}
         \item Sospensione delle operazioni di scrittura, commit e abort delle transazioni.
-        \item Esecuzione della primitiva force sulle pagine "dirty" di transazioni che hanno eseguito il commit.
-        \item Scritture sincrona sul file LOG del record di CheckPoint con gli 
+        \item Esecuzione della primitiva force sulle pagine \textit{dirty} di transazioni che hanno eseguito il commit.
+        \item Scritture sincrona sul file \verb|LOG| del record di CheckPoint con gli 
         identificatori delle transazioni attive.
         \item Ripresa delle operazioni di scrittura, commit e abort delle transazioni.
     \end{itemize}
 \end{itemize}
-\subsubsection{Regole di scrittura sul LOG}
+\subsubsection{Regole di scrittura sul \texttt{LOG}}
 \begin{itemize}
     \item Regola WAL (\textit{Write Ahead Log}): i record di log devono 
-    essere scritti sul LOG prima dell'esecuzione delle corrispondenti operazioni sulla base di dati 
-    (\textit{garantisce la possibilità di fare sempre UNDO}).
+    essere scritti sul \verb|LOG| prima dell'esecuzione delle corrispondenti operazioni sulla base di dati 
+    (\textit{garantisce la possibilità di fare sempre $\texttt{UNDO}$}).
     \item Regola Commit-Precedenza: i record di log devono essere 
     scritti prima dell'esecuzione del commit della transazione (\textit{Garantisce 
-    la possibilità di fare REDO}).
+    la possibilità di fare $\texttt{REDO}$}).
 \end{itemize}
 Tali regole consentono inoltre di salvare i blocchi delle pagine "dirty" in 
 modo totalmente asincrono rispetto al commit delle transazioni.
 \subsubsection{Azione di commit}
-Una transazione $T$ sceglie in modo atomico l'esito di commit nel momento in cui 
-scrive nel file di log in modo sincrono (\textit{primitiva force}) il suo record di commit $C(T)$.
+Una transazione \verb|T| sceglie in modo atomico l'esito di commit nel momento in cui 
+scrive nel file di log in modo sincrono (\textit{primitiva $\texttt{force}$}) il suo record di commit \verb|C(T)|.
 \begin{itemize}
-    \item Se il guasto avviene prima della scrittura del record di commit $UNDO$.
-    \item Se il guasto avviene dopo la scrittura del record di commit $REDO$.
+    \item Se il guasto avviene prima della scrittura del record di commit $\verb|UNDO|$.
+    \item Se il guasto avviene dopo la scrittura del record di commit $\verb|REDO|$.
 \end{itemize}
 \subsubsection{Gestore dell'affidabilità}
 Il gestore dell'affidabilità gestisce due tipologie di guasto:
@@ -577,22 +577,22 @@ Il gestore dell'affidabilità gestisce due tipologie di guasto:
 \end{figure}
 \subsection{Ripresa a caldo}
 \begin{itemize}
-    \item Si accede all'ultimo blocco di LOG e si ripercorre all'indietro il log 
-    fino al più recente record $CK$.
-    \item Si decidono le transazioni da rifare/disfare inizializzando l'insieme $UNDO$ con 
-    le transazioni attive al $CK$ e l'insieme $REDO$ con l'insieme vuoto.
-    \item Si ripercorre in avanti il LOG e per ogni record $B(T)$ incontrato 
-    si aggiunge $T$ a $UNDO$ e per ogni record $C(T)$ incontrato si sposta $T$ da $UNDO$ a $REDO$.
-    \item Si ripercorre all’indietro il LOG disfacendo le operazioni eseguite dalle transazioni in 
-    $UNDO$ risalendo fino alla prima azione della transazione più vecchia.
-    \item Si rifanno le operazioni delle transazioni dell'insieme $REDO$.
+    \item Si accede all'ultimo blocco di \verb|LOG| e si ripercorre all'indietro il \verb|LOG| 
+    fino al più recente record \verb|CK|.
+    \item Si decidono le transazioni da rifare/disfare inizializzando l'insieme $\verb|UNDO|$ con 
+    le transazioni attive al $\verb|CK|$ e l'insieme $\verb|REDO|$ con l'insieme vuoto.
+    \item Si ripercorre in avanti il \verb|LOG| e per ogni record $\verb|B(T)|$ incontrato 
+    si aggiunge $\verb|T|$ a $\verb|UNDO|$ e per ogni record $\verb|C(T)|$ incontrato si sposta $\verb|T|$ da $\verb|UNDO|$ a $\verb|REDO|$.
+    \item Si ripercorre all’indietro il \verb|LOG| disfacendo le operazioni eseguite dalle transazioni in 
+    $\verb|UNDO|$ risalendo fino alla prima azione della transazione più vecchia.
+    \item Si rifanno le operazioni delle transazioni dell'insieme $\verb|REDO|$.
 \end{itemize}
 \subsection{Ripresa a freddo}
 \begin{itemize}
-    \item Si accede al $DUMP$ della base di dati e si ricopia selettivamente la 
+    \item Si accede al $\verb|DUMP|$ della base di dati e si ricopia selettivamente la 
     parte deteriorata della base di dati.
-    \item Si accede al LOG risalendo al record $DUMP$.
-    \item Si ripercorre in avanti il LOG rieseguendo tutte le operazioni relative alla parte deteriorata
+    \item Si accede al \verb|LOG| risalendo al record $\verb|DUMP|$.
+    \item Si ripercorre in avanti il \verb|LOG| rieseguendo tutte le operazioni relative alla parte deteriorata
     comprese le azioni di commit e abort.
     \item Si applica una ripresa a caldo.
 \end{itemize}
@@ -607,15 +607,15 @@ organizzati in specifiche strutture fisiche.
 \end{tcolorbox}
 Ogni metodo d'accesso ai dati conosce:
 \begin{itemize}
-    \item L'organizzazione delle tuple/record di indice nei blocchi DATI/INDICE salvati
+    \item L'organizzazione delle tuple/record di indice nei blocchi \verb|DATI/INDICE| salvati
     in memoria secondaria (\textit{come una tabella/indice viene organizzata 
-    in blocchi DATI della memoria secondaria});
-    \item L’organizzazione fisica interna dei blocchi sia quando contengono DATI 
+    in blocchi $\texttt{DATI}$ della memoria secondaria});
+    \item L’organizzazione fisica interna dei blocchi sia quando contengono \verb|DATI| 
     (\textit{vale a dire, tuple di una tabella}) sia quando contengono strutture 
-    fisiche di accesso o INDICI (\textit{vale a dire, record di un indice}).
+    fisiche di accesso o \verb|INDICI| (\textit{vale a dire, record di un indice}).
 \end{itemize}
 \subsection{Organizzazione di un blocco DATI}
-In un blocco DATI sono presenti informazioni utili e informazioni di controllo:
+In un blocco \verb|DATI| sono presenti informazioni utili e informazioni di controllo:
 \begin{itemize}
     \item Informazioni utili: tuple della tabella;
     \item Informazioni di controllo: dizionario, bit di parità, altre informazioni del 
@@ -684,8 +684,8 @@ i puntatori}).
 
 La cancellazione di una tupla avviene seguendo i seguenti passi:
 \begin{itemize}
-    \item Individuazione del blocco $B$ che contiene la tupla da cancellare.
-    \item Cancellazione della tupla $B$.
+    \item Individuazione del blocco $\verb|B|$ che contiene la tupla da cancellare.
+    \item Cancellazione della tupla $\verb|B|$.
     \item Aggiustamento della catena di puntatori.
 \end{itemize}
 
@@ -854,32 +854,32 @@ vincolato come segue (\textit{per la radice non vale il minimo}):
 La ricerca si effettua attraverso diversi passi:
 \begin{enumerate}
   \item Cercare nel nodo radice il più piccolo valore di 
-  chiave maggiore di $K$.
+  chiave maggiore di $\verb|K|$.
   \begin{itemize}
     \item Se esiste allora si segue il puntatore $p_i$.
     \item Se tale valore non esiste si segue il puntatore $p_m$.
   \end{itemize}
   \item Se il nodo raggiunto è un nodo foglia cercare il valore 
-  $K$ nel nodo e seguire il corrisponde puntatore verso le tuple, 
+  $\verb|K|$ nel nodo e seguire il corrisponde puntatore verso le tuple, 
   altrimenti riprendere il passo $(1)$.
 \end{enumerate}
-\subsubsection{Inserimento con chiave K}
+\subsubsection{Inserimento con chiave $\texttt{K}$}
 \begin{enumerate}
-  \item Ricerca del nodo foglia $NF$ dove il valore $K$ va inserito
-  \item Se $K$ è presente in $NF$, allora:
+  \item Ricerca del nodo foglia $\verb|NF|$ dove il valore $\verb|K|$ va inserito
+  \item Se $\verb|K|$ è presente in $\verb|NF|$, allora:
   \begin{itemize}
     \item Indice primario: nessuna azione;
     \item Indice secondario: aggiornamento del bucket di puntatori.
   \end{itemize}
-  Altrimenti, inserire $K$ in $NF$ rispettando l'ordine e:
+  Altrimenti, inserire $\verb|K|$ in $\verb|NF|$ rispettando l'ordine e:
   \begin{itemize}
     \item Indice primario: inserire il puntatore alla tupla con valore $K$ 
     della chiave;
     \item Indice secondario: inserire un nuovo bucket di puntatori contenente 
-    il puntatore alla tupla con valore $K$ della chiave.
+    il puntatore alla tupla con valore $\verb|K|$ della chiave.
   \end{itemize}
 \end{enumerate}
-Se non è possibile inserire $K$ in $NF$, allora si esegue uno split di $NF$.
+Se non è possibile inserire $\verb|K|$ in $\verb|NF|$, allora si esegue uno split di $\verb|NF|$.
 
 Nel nodo da dividere esistono $n$ valori chiave, si procede come segue:
 \begin{itemize}
@@ -890,16 +890,16 @@ Nel nodo da dividere esistono $n$ valori chiave, si procede come segue:
   foglia generato e riaggiustare i valori chiave presenti nel nodo padre.
   \item Se anche il nodo padre è pieno lo spit si propaga al padre e così via.
 \end{itemize}
-\subsubsection{Cancellazione con chiave K}
+\subsubsection{Cancellazione con chiave $\texttt{K}$}
 \begin{enumerate}
-  \item Ricerca del nodo foglia $NF$ dove il valore $K$ va cancellato.
-  \item Cancellare $K$ da $NF$ insieme al suo puntatore:
+  \item Ricerca del nodo foglia $\verb|NF|$ dove il valore $\verb|K|$ va cancellato.
+  \item Cancellare $\verb|K|$ da $\verb|NF|$ insieme al suo puntatore:
   \begin{itemize}
     \item Indice primario: nessuna ulteriore azione;
     \item Indice secondario: liberare il bucket di puntatori.
   \end{itemize}
 \end{enumerate}
-Se dopo la cancellazione di $K$ da $NF$ viene violato allora si esegue un merge di $NF$.
+Se dopo la cancellazione di $\verb|K|$ da $\verb|NF|$ viene violato allora si esegue un merge di $\verb|NF|$.
 \section{Hash}
 Le caratteristiche generali delle strutture ad accesso calcolato:
 \begin{itemize}
@@ -934,10 +934,10 @@ La struttura ad accesso calcolato funziona se i buckets conservano un basso coef
 di riempimento. Infatti il problema delle strutture ad accesso calcolato è la 
 gestione delle collisioni.
 
-La collisione si verifica quando, dati due valori di chiave $K_1$ e $K_2$, con 
-$K_1 \neq K_2$, risulta
+La collisione si verifica quando, dati due valori di chiave $\texttt{K}_1$ e $\texttt{K}_2$, con 
+$\texttt{K}_1 \neq \texttt{K}_2$, risulta
 \[
-  h(f(K_1)) = h(f(K_2))
+  h(f(\texttt{K}_1)) = h(f(\texttt{K}_2))
 \]
 Un numero eccessivo di collisioni porta alla saturazione del bucket corrispondente.
 \subsection{Collisioni}
@@ -954,7 +954,7 @@ nel bucket è:
 \]
 \subsection{Gestione delle collisioni}
 Un numero eccessivo di collisioni sullo stesso indirizzo porta alla saturazione del bucket corrispondente. Per gestire tale situazione 
-si prevede la possibilità di allocare Buckets di overflow, collegati di base:
+si prevede la possibilità di allocare buckets di overflow, collegati di base:
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}[%scale=.2,
@@ -1133,8 +1133,8 @@ Richiedono questa ipotesi le seguenti tecniche di gestione della concorrenza:
 Prima di definire la view-equivalenza vediamo delle definizioni preliminari.
 
 \begin{tcolorbox}[title = {Legge da}]
-Dato uno schema $\mathcal{S}$ si dice che un'operazione di lettura $r_i(x)$,
-che compare in $\mathcal{S}$, se $w_j(x)$ precede $r_i(x)$ in $\mathcal{S}$
+Dato uno schema $\mathcal{S}$ si dice che un'operazione di lettura $r_i(x)$ che compare in $\mathcal{S}$,
+fa parte dell'insieme \verb|LEGGE_DA|, se $w_j(x)$ precede $r_i(x)$ in $\mathcal{S}$
 e non vi è alcuna operazione $w_k(x)$ tra le due.
 \end{tcolorbox}
 \subsubsection{Esempio}
@@ -1147,7 +1147,7 @@ e non vi è alcuna operazione $w_k(x)$ tra le due.
 
 \begin{tcolorbox}[title = {Scritture finali}]
   Dato uno schema $\mathcal{S}$ si dice che un'operazione di scrittura $w_i(x)$,
-  che compare in $\mathcal{S}$, è una \verb|SCRITTURA FINALE| se è l'ultima operazione di scrittura della risorsa $x$
+  che compare in $\mathcal{S}$, appartiene all'insieme \verb|SCRITTURE_FINALI| se è l'ultima operazione di scrittura della risorsa $x$
   in $\mathcal{S}$.
   \end{tcolorbox}
   \subsubsection{Esempio}
@@ -1160,12 +1160,12 @@ e non vi è alcuna operazione $w_k(x)$ tra le due.
 
 \begin{tcolorbox}[title = {View-equivalenza}]
   Da schedule $S_1$ e $S_2$ sono view-equivalenti ($\mathcal{S}_1 \approx_V \mathcal{S}_2$) se 
-  possiedono le stesse relazioni \verb|LEGGE_DA| e le stesse SCRITTURE FINALI.
+  possiedono le stesse relazioni \verb|LEGGE_DA| e lo stesso insieme \verb|SCRITTURE_FINALI|.
 \end{tcolorbox}
 \subsubsection{View-serializzabilità}
 \begin{tcolorbox}[title = {View-serializzabilità}]
 Uno schedule $\mathcal{S}$ è view-serializzabile (\textit{VSR}) se esiste uno schedule 
-seriale $\mathcal{S}'$ title che $mathcal{S}' \approx_V \mathcal{S}$.
+seriale $\mathcal{S}'$ tale che $\mathcal{S}' \approx_V \mathcal{S}$.
 \end{tcolorbox}
 Gli schedule seriali $\mathcal{S}'$ si generano considerando tutte le possibili 
 permutazioni delle transazioni che compaiono in $\mathcal{S}$. Inoltre, non si deve 
@@ -1204,7 +1204,7 @@ Definito il concetto di conflitto, possiamo definire la conflict-equivalenza.
 L'algoritmo per il test di conflict-serializzabilità di uno schedule è di 
 \textbf{complessità lineare}, e segue i seguenti passi:
 \begin{itemize}
-  \item Si costruisce il grafo dei conflitti $G(N,A)$ dove 
+  \item Si costruisce il grafo dei conflitti $\verb|G(N,A)|$ dove 
   $N=\{t_1,\dots,t_n\}$ con $t_1,\dots,t_n$ transazioni di $\mathcal{S}$.
   \item $(t_i,_j)\in A$ se esiste almeno un conflitto $(a_i,a_j) \in \mathcal{S}$.
   \item Se il grafo così costruito è aciclico allora $\mathcal{S}$ è conflict-serializzabile.
@@ -1216,7 +1216,7 @@ L'algoritmo per il test di conflict-serializzabilità di uno schedule è di
 \begin{proof}
 Se uno schedule $\mathcal{S}$ 
 è CSR allora è conflict-equivalente ad uno schedule seriale $\mathcal{S}_{ser}$.
-Supponiamo che le transazioni in $\mathcal{S}_{ser}$ siano ordinate secondo il $TID: t_1,t_2,\dots,t_n$. 
+Supponiamo che le transazioni in $\mathcal{S}_{ser}$ siano ordinate secondo il $\texttt{TID}: t_1,t_2,\dots,t_n$. 
 Poiché $\mathcal{S} \approx_C \mathcal{S}_{ser}$, $\mathcal{S}_{ser}$ ha tutti i conflitti 
 di $\mathcal{S}$ esattamente nello stesso ordine.
 
@@ -1300,7 +1300,7 @@ rispetto al locking.
 \end{figure}
 \subsection{Serializzabilità}
 La regola che garantisce la serializzabilità (\textit{da cui prende il nome il metodo 
-2PL}), una transazione dopo aver rilasciato un LOCK non può acquisirne altri.
+2PL}), una transazione dopo aver rilasciato un \verb|LOCK| non può acquisirne altri.
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
@@ -1315,8 +1315,9 @@ La regola che garantisce la serializzabilità (\textit{da cui prende il nome il 
   \end{tikzpicture}
 \end{figure}
 \subsection{2PL stretto}
-Per rimuovere completamente l'ipotesi di commit-proiezione, una transazione può rilasciare i LOCK solo quando ha eseguito correttamente un COMMIT o 
-un ROLLBACK.
+Per rimuovere completamente l'ipotesi di commit-proiezione, una transazione può rilasciare i \verb|LOCK| 
+solo quando ha eseguito correttamente un \verb|COMMIT| o 
+un \verb|ROLLBACK|.
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
@@ -1360,11 +1361,11 @@ la probabilità che si verifichi un lock tra due transazioni è pari a $\frac{1}
   \item \begin{itemize}
     \item Una transazione blocca tutte le risorse a cui deve accedere in lettura 
     o scrittura in una sola volta (\textit{o blocca tutto o non blocca nulla}).
-    \item Ogni transazione $t_i$ acquisisce un timestamp $TS_i$ all'inizio della sua esecuzione.
+    \item Ogni transazione $t_i$ acquisisce un timestamp $\texttt{TS}_i$ all'inizio della sua esecuzione.
     La transazione $t_i$ può attendere una risorsa bloccata da $t_j$ solo se vale una certa 
-    condizione sui $TS$ ($TS_i < TS_j$) altrimenti viene abortita e fatta ripartire con lo stesso $TS$.
+    condizione sui $\texttt{TS}$ ($\texttt{TS}_i < \texttt{TS}_j$) altrimenti viene abortita e fatta ripartire con lo stesso $TS$.
   \end{itemize}
-  \item \textbf{Rilevamento}: si esegue un'analisi periodica della tabella di LOCK per rilevare la 
+  \item \textbf{Rilevamento}: si esegue un'analisi periodica della tabella di \verb|LOCK| per rilevare la 
   presenza di un blocco critico (\textit{corrisponde ad un ciclo nel grafo 
   delle relazioni di attesa}). Questa tecnica è quella più frequentemente adottata dai sistemi 
   reali.
@@ -1453,11 +1454,11 @@ Una operazione di \verb|scan| opera contestualmente altre operazioni, tra cui:
   \item \verb|scan| e \verb|selezione| in base ad un predicato semplice.
   \item \verb|scan| e inserimento, cancellazione o modifica.
 \end{itemize}
-Il costo di una scansione sulla relazione R è $NP(R)$, dove $NP(R)$
-è il numero di pagine date dalla relazione R.
+Il costo di una scansione sulla relazione $\verb|R|$ è $\verb|NP(R)|$, dove $\verb|NP(R)|$
+è il numero di pagine date dalla relazione \verb|R|.
 \subsection{Ordinamento}
-L'ordinamento viene utilizzato per ordinare il risultato di un'interrogazione (\textit{clausola 
-order by}), eliminare duplicati (\textit{select distinct}) e raggruppare tuple (\textit{group by}).
+L'ordinamento viene utilizzato per ordinare il risultato di un'interrogazione (\textit{con la clausola} \verb|order by|),
+eliminare duplicati (\verb|select distinct|) e raggruppare tuple (\verb|group by|).
 
 L'ordinamento su memoria secondaria viene eseguito tramite l'algoritmo \textbf{Z-way Merge Sort} che si suddivide 
 in due fasi:
@@ -1470,48 +1471,11 @@ in due fasi:
 \subsubsection{Z-way Sort-Merge}
 \begin{figure}[H]
   \centering
-  \begin{tikzpicture}[level distance=1.5cm,  level 1/.style={sibling distance=6cm},  level 2/.style={sibling distance=3cm},  level 3/.style={sibling distance=1.5cm}]
-  
-    \node[circle,draw] (z) {7}
-      child {node[circle,draw] (a) {4}
-        child {node[circle,draw] (b) {2}
-          child {node[rectangle,draw] (c) {A: 1}}
-          child {node[rectangle,draw] (d) {B: 2}}
-        }
-        child {node[circle,draw] (e) {3}
-          child {node[rectangle,draw] (f) {C: 3}}
-          child {node[rectangle,draw] (g) {D: 4}}
-        }
-      }
-      child {node[circle,draw] (h) {9}
-        child {node[circle,draw] (i) {8}
-          child {node[rectangle,draw] (j) {E: 5}}
-          child {node[rectangle,draw] (k) {F: 6}}
-        }
-        child {node[circle,draw] (l) {10}
-          child {node[rectangle,draw] (m) {G: 7}}
-          child {node[rectangle,draw] (n) {H: 8}}
-        }
-      };
-  
-    % linee di connessione
-    \draw[dashed] (c) -- (d);
-    \draw[dashed] (f) -- (g);
-    \draw[dashed] (j) -- (k);
-    \draw[dashed] (m) -- (n);
-    \draw[dashed] (b) -- (e);
-    \draw[dashed] (i) -- (l);
-    \draw[dashed] (a) -- (h);
-    \draw[dashed] (z) -- (a);
-    \draw[dashed] (z) -- (h);
-    \draw[dashed] (h) -- (i);
-    \draw[dashed] (a) -- (e);
-  
-  \end{tikzpicture}
+  \includegraphics[width=10cm]{img/z-way-merge-sort.png}
 \end{figure}
 Il costo, considerando solo il numero di accessi a memoria secondaria è 
 \[
-  2 \cdot NP \cdot \left( \lceil \log_2 NP\rceil + 1\right)
+  2 \cdot \texttt{NP} \cdot \left( \lceil \log_2 \texttt{NP}\rceil + 1\right)
 \]
 Dove la moltiplicazione per due considera lettura e scrittura.
 \subsection{Accesso diretto via indice}
@@ -1519,11 +1483,11 @@ Le interrogazioni che fanno uso dell'indice:
 \begin{itemize}
   \item Selezioni con condizione atomica di uguaglianza $(A = v)$ richiedono indice hash o
   B+-Tree.
-  \item Selezioni con condizioni di range $(A >=v_1\, AND \, A <=v_2)$ richiedono indice B+-Tree.
-  \item Le selezioni con condizione costruita da una congiunzione di condizioni di uguaglianza $(A >=v_1\, AND \, B <=v_2)$:
+  \item Selezioni con condizioni di range $(A >=v_1\, \texttt{AND} \, A <=v_2)$ richiedono indice B+-Tree.
+  \item Le selezioni con condizione costruita da una congiunzione di condizioni di uguaglianza $(A >=v_1\, \texttt{AND} \, B <=v_2)$:
   in questo caso si sceglie per quale delle condizioni di uguaglianza utilizzare l'indice; la 
   scelta ricade sulla condizione più selettiva. L'altra si verifica direttamente sulle pagine dati.
-  \item Le selezioni con condizione da disgiunzione di condizioni di uguaglianza, così composte $(A >=v_1\, OR \, B <=v_2)$:
+  \item Le selezioni con condizione da disgiunzione di condizioni di uguaglianza, così composte $(A >=v_1\, \texttt{ } \, B <=v_2)$:
   in questo caso è possibile utilizzare più indici in parallelo, facendo un merge dei risultati eliminando i duplicati oppure,
   se manca anche solo uno degli indici, è necessario eseguire una scansione sequenziale.
 \end{itemize}
@@ -1553,26 +1517,26 @@ $PJ$, e supponendo che $\mathcal{R}$ sia la relazione esterna, l'algoritmo opera
 \end{lstlisting}
 Il costo di esecuzione dipende dallo spazio a disposizione nei buffer.
 Nel caso base in cui vi sia un buffer per $\mathcal{R}$ e un buffer per $\mathcal{S}$
-allora bisogna leggere una volta $\mathcal{R}$ e $NR(\mathcal{R})$ volte $\mathcal{S}$,
+allora bisogna leggere una volta $\mathcal{R}$ e $\texttt{NR}(\mathcal{R})$ volte $\mathcal{S}$,
 ovvero tante vole quante sono le tuple della relazione esterna.
 Per un totale di 
 \[
-  NR(\mathcal{R}) + NR(\mathcal{R}) \cdot NP(\mathcal{S})
+  \texttt{NR}(\mathcal{R}) + \texttt{NR}(\mathcal{R}) \cdot \texttt{NP}(\mathcal{S})
 \]
-Se è possibile allocare $NP(\mathcal{S})$ buffer per la relazione interna il costo si riduce a 
-$NP(\mathcal{R}) + NP(\mathcal{S})$.
+Se è possibile allocare $\texttt{NP}(\mathcal{S})$ buffer per la relazione interna il costo si riduce a 
+$\texttt{NP}(\mathcal{R}) + \texttt{NP}(\mathcal{S})$.
 \subsubsection{Nested-Loop Join con indice B+-Tree}
 Data una tupla della relazione esterna $\mathcal{R}$, la scansione completa della relazione interna 
 $\mathcal{S}$ può essere sostituita da una scansione basata su un indice costruito sugli attributi 
 di join di $\mathcal{S}$.
 
 Nel caso in cui vi sia un buffer per $\mathcal{R}$ e un buffer per $\mathcal{S}$, bisogna 
-leggere una volta $\mathcal{R}$ e accedere $NR(\mathcal{R})$ volte a $\mathcal{S}$, 
+leggere una volta $\mathcal{R}$ e accedere $\texttt{NR}(\mathcal{R})$ volte a $\mathcal{S}$, 
 ovvero tante volte quante sono le tuple della relazione esterna, per un totale di 
 \[
-  NP(\mathcal{R}) + NR(\mathcal{R}) \cdot \left((\text{Prof indice} + \frac{NR(\mathcal{S})}{\text{VAL}(\mathcal{A}, \mathcal{S})}\right)
+  \texttt{NP}(\mathcal{R}) + \texttt{NR}(\mathcal{R}) \cdot \left((\texttt{Prof indice} + \frac{\texttt{NR}(\mathcal{S})}{\text{VAL}(\mathcal{A}, \mathcal{S})}\right)
 \]
-dove: VAL$(\mathcal{A}, \mathcal{S})$ rappresenta il numero di valori distinti dall'attributo di $\mathcal{A}$
+dove: \verb|VAL|$(\mathcal{A}, \mathcal{S})$ rappresenta il numero di valori distinti dall'attributo di $\mathcal{A}$
 che compaiono nella relazione $\mathcal{S}$.
 \subsubsection{Block Nested-Loop Join}
 Si tratta di una variante che bufferizza le righe lette della tabella esterna per ridurre il numero 
@@ -1580,12 +1544,12 @@ di volte che deve essere letta nel ciclo interno.
 
 Il costo di esecuzione dipende dallo spazio a disposizione nei buffer. Nel caso 
 base vi sia un buffer per $\mathcal{R}$ e un buffer per $\mathcal{S}$ allora bisogna 
-leggere una volta $\mathcal{R}$ e $NP(\mathcal{R})$ volte $\mathcal{S}$, ovvero 
+leggere una volta $\mathcal{R}$ e $\texttt{NP}(\mathcal{R})$ volte $\mathcal{S}$, ovvero 
 tante volte quanti sono i blocchi della relazione esterna, per un totale di 
-$NP(\mathcal{R}) + NP(\mathcal{R}) \cdot NP(\mathcal{S})$ accessi a memoria secondaria.
+$\texttt{NP}(\mathcal{R}) + \texttt{NP}(\mathcal{R}) \cdot \texttt{NP}(\mathcal{S})$ accessi a memoria secondaria.
 
-Se è possibile allocare $NP(\mathcal{S})$ buffer per la relazione interna il costo si riduce a 
-$NP(\mathcal{R}) + NP(\mathcal{S})$.
+Se è possibile allocare $\texttt{NP}(\mathcal{S})$ buffer per la relazione interna il costo si riduce a 
+$\texttt{NP}(\mathcal{R}) + \texttt{NP}(\mathcal{S})$.
 \subsection{Merge-Scan Join}
 Il Merge-Scan Join è applicabile quando entrambi gli insiemi di tuple in input sono ordinati 
 sugli attributi di join e il join e un equi-join.
@@ -1600,12 +1564,12 @@ vale almeno una delle seguenti condizioni:
 \end{itemize}
 La logica dell'algoritmo sfrutta il fatto che entrambi gli input siano ordinati 
 per evitare di fare inutili confronti, il che fa sì che il numero di letture totali 
-sia dell'ordine di $NP(\mathcal{R}) + NP(\mathcal{S})$ se si accede sequenzialmente alle 
+sia dell'ordine di $\texttt{NP}(\mathcal{R}) + \texttt{NP}(\mathcal{S})$ se si accede sequenzialmente alle 
 due relazioni ordinate fisicamente.
 
 Con indici B+-Tree su entrambe le relazioni il costo può arrivare al massimo a 
-$NR(\mathcal{R}) + NR(\mathcal{S})$.
-Con una relazione ordinata e un solo indice al massimo a $NP(\mathcal{R}) + NR(\mathcal{S})$ o viceversa.
+$\texttt{NR}(\mathcal{R}) + \texttt{NR}(\mathcal{S})$.
+Con una relazione ordinata e un solo indice al massimo a $\texttt{NP}(\mathcal{R}) + \texttt{NR}(\mathcal{S})$ o viceversa.
 \subsection{Hash-based Join}
 L'algoritmo di Hash Join, applicabile solo in caso di equi-join, non richiede nè la presenza di 
 indici nè input ordinati, e risulta particolarmente vantaggioso in caso di relazioni molto grandi.
@@ -1625,8 +1589,8 @@ la ricerca di matching tuples avviene solo tra partizioni relative allo stesso v
 
 Il costo può essere così valutato:
 \begin{itemize}
-  \item costruzione hash-map: $NP(\mathcal{R}) + NP(\mathcal{S})$.
-  \item Accesso alle matching tuples che nel  caso pessimo può costare: $NP(\mathcal{R}) \cdot NP(\mathcal{S})$.
+  \item costruzione hash-map: $\texttt{NP}(\mathcal{R}) + \texttt{NP}(\mathcal{S})$.
+  \item Accesso alle matching tuples che nel  caso pessimo può costare: $\texttt{NP}(\mathcal{R}) \cdot \texttt{NP}(\mathcal{S})$.
 \end{itemize}
 Dipende però fortemente dal numero di buffer a disposizione e dalla distribuzione dei valori degli attributi di join.
 \subsection{Scelta finale del piano di esecuzione}
@@ -1643,107 +1607,11 @@ memoria secondaria richiesti (\textit{stima}) e si sceglia l'albero con costo ap
 Nella valutazione delle stime di costo si tiene conto del profilo delle relazioni, solitamente 
 memorizzato nella Data Directory e contenente per ogni relazione $\mathcal{T}$:
 \begin{itemize}
-  \item Stima della cardinalità: CARD$(\mathcal{T})$;
-  \item Stima della dimensione di una tupla: SIZE$(\mathcal{T})$;
-  \item Stima della dimensione di ciascun attributo $(\mathcal{A})$: SIZE$(\mathcal{A},\mathcal{T})$;
-  \item Stima del numero di valori distinti per ogni attributo $(\mathcal{A})$: VAL$(\mathcal{A},\mathcal{T})$;
+  \item Stima della cardinalità: \verb|CARD|$(\mathcal{T})$;
+  \item Stima della dimensione di una tupla: \verb|SIZE|$(\mathcal{T})$;
+  \item Stima della dimensione di ciascun attributo $(\mathcal{A})$: \verb|SIZE|$(\mathcal{A},\mathcal{T})$;
+  \item Stima del numero di valori distinti per ogni attributo $(\mathcal{A})$: \verb|VAL|$(\mathcal{A},\mathcal{T})$;
   \item Stima del valore massimo e minimo per ogni attributo $\mathcal{A}$:
-  MAX$(\mathcal{A},\mathcal{T})$ e MIN$(\mathcal{A},\mathcal{T})$;
+  \verb|MAX|$(\mathcal{A},\mathcal{T})$ e \verb|MIN|$(\mathcal{A},\mathcal{T})$;
 \end{itemize}
-\chapter{XML}
-XML è un linguaggio di marcatura proposto da W3C, esso definisce una sintassi 
-generica per contrassegnare i dati di un documento con marcatori (\textit{tag}) 
-semplici e leggibili.
-
-La sintassi XML viene utilizzata in contesti molto diversi:
-\begin{itemize}
-  \item pagine web;
-  \item scambio di dati tra applicazioni web;
-  \item grafica vettoriale;
-  \item cataloghi di prodotti;
-  \item sistemi di gestione di messaggi vocali;
-  \item \dots
-\end{itemize}
-\section{Sintassi di base}
-XML è più restrittivo di HTML per quanto riguarda il posizionamento dei tag e 
-il modo in cui vengono scritti.
-
-Ogni documento XML deve essere ben formato, vale a dire che:
-\begin{itemize}
-  \item Deve avere una sola radice.
-  \item L'annidamento dei tag deve essere corretto.
-  \item Tutti i tag aperti devono essere chiusi.
-  \item I valori degli attributi devono essere specificati tra virgolette.
-\end{itemize}
-\subsubsection{Esempio}
-\begin{lstlisting}
-  <!-- Dati Persona -->
-  <persona cod_fiscale = "RSSMRA65E25L781T">
-    <nome> Luca Rossi </nome>
-    <indirizzo>
-      <via> Via Mazzini </via>
-      <civico> 10 </civico>
-      <citta> Verona </citta>
-    </indirizzo>
-  </persona>
-\end{lstlisting}
-Il documento \verb|persona.xml| contiene un elemento radice \verb|<persona>|.
-L'elemento \verb|<persona>| ha una struttura: contiene un elemento \verb|<nome>| e un elemento 
-\verb|<indirizzo>|.
-
-L'elemento \verb|<nome>| contiene un testo, mentre l'elemento \verb|<indirizzo>| ha una struttura ulteriore:
-contiene gli elementi \verb|<via>|, \verb|<civico>| e \verb|<città>|.
-\subsection{Sintassi}
-Un elemento può essere corredato di attributi.
-
-Un attributo consiste in una coppia nome-valore associata al tag iniziale 
-di un elemento. Ad esempio \verb|<persona cod_fisc = 'RSSMRA65E25L781T'>|
-\subsection{Elementi o attributi}
-\begin{minipage}[t]{0.48\textwidth}
-Contenuto rappresentato con attributi
-  \begin{lstlisting}[language=XML]
-      <person sex="female">
-        <firstname>Anna</firstname>
-        <lastname>Smith</lastname>
-      </person>
-  \end{lstlisting}
-\end{minipage}
-  \hfill
-\begin{minipage}[t]{0.48\textwidth}
-    Contenuto rappresentato con elementi
-  \begin{lstlisting}[language=XML]
-      <person>
-        <sex>female</sex>
-        <firstname>Anna</firstname>
-        <lastname>Smith</lastname>
-      </person>
-  \end{lstlisting}
-\end{minipage}
-Nel primo esempio il sesso della persona è stato rappresentato come attributo.
-Nel secondo come elemento. L'informazione rappresentata è la stessa in entrambe i casi.
-
-Non ci sono regole prefissate su quando usare attributi o elementi per rappresentare 
-informazioni in XML. Tuttavia XML viene usato come sintassi per la specifica di informazioni 
-semi-strutturata è evidente che gli elementi forniscano una rappresentazione più accurata del dato semi-strutturato.
-
-Gli attributi non possono contenere più valori o informazioni ulteriormente strutturate ad albero e non sono 
-facilmente estendibili.
-
-Gli attributi sono difficili da leggere e gestire. Meglio usare gli elementi per 
-le informazioni e gli attributi per le meta-informazioni.
-\subsubsection{Intestazione dei documenti XML}
-Ogni documento XML dovrebbe iniziare con una dichiarazione XML
-\begin{lstlisting}
-<?xml version="1.0" encoding="US-ASCII" standalone="yes"?>
-\end{lstlisting}
-\subsection{Validazione dei documenti XML}
-Ogni documento XML ben formato rispetta la sintassi base del XML, per ogni insieme 
-di documenti XML che debba rappresentare una certa categoria di informazioni è possibile 
-definire un documento XML che ne descrive la sintassi specifica.
-
-La sintassi di un documento XML si descrive attraverso uno schema di documento \textbf{XMLSchema}
-
-Ogni documento XML è valido se è ben formato e rispetta la sintassi specificata nel file \verb|XSD|.
-\section{XML Schema}
-
 \end{document}

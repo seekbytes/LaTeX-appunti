@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.30)  10 MAY 2023 22:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.30)  15 MAY 2023 16:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1057,7 +1057,7 @@ l.54 ...concorrente di transazioni}{22}{chapter.3}
 
  [2]
 Capitolo 1.
-<img/architetturaDBMS.jpeg, id=423, 2138.99126pt x 556.0775pt>
+<img/architetturaDBMS.jpeg, id=388, 2138.99126pt x 556.0775pt>
 File: img/architetturaDBMS.jpeg Graphic file (type jpg)
 <use img/architetturaDBMS.jpeg>
 Package pdftex.def Info: img/architetturaDBMS.jpeg  used on input line 278.
@@ -1065,32 +1065,46 @@ Package pdftex.def Info: img/architetturaDBMS.jpeg  used on input line 278.
 [3
 
  <./img/architetturaDBMS.jpeg>] [4]
-<img/gestoriDBMS.jpeg, id=446, 1003.24812pt x 382.93062pt>
+<img/gestoriDBMS.jpeg, id=410, 1003.24812pt x 382.93062pt>
 File: img/gestoriDBMS.jpeg Graphic file (type jpg)
 <use img/gestoriDBMS.jpeg>
 Package pdftex.def Info: img/gestoriDBMS.jpeg  used on input line 357.
 (pdftex.def)             Requested size: 426.79134pt x 162.90404pt.
  [5 <./img/gestoriDBMS.jpeg>]
-<img/buffer.jpeg, id=454, 993.21063pt x 318.69063pt>
+<img/buffer.jpeg, id=417, 993.21063pt x 318.69063pt>
 File: img/buffer.jpeg Graphic file (type jpg)
 <use img/buffer.jpeg>
 Package pdftex.def Info: img/buffer.jpeg  used on input line 410.
 (pdftex.def)             Requested size: 426.79134pt x 136.94676pt.
  [6] [7 <./img/buffer.jpeg>]
-<img/affidabilita.jpeg, id=469, 1077.02374pt x 416.55624pt>
+<img/affidabilita.jpeg, id=431, 1077.02374pt x 416.55624pt>
 File: img/affidabilita.jpeg Graphic file (type jpg)
 <use img/affidabilita.jpeg>
 Package pdftex.def Info: img/affidabilita.jpeg  used on input line 490.
 (pdftex.def)             Requested size: 426.79134pt x 165.06865pt.
- [8 <./img/affidabilita.jpeg>] [9]
-<img/modelloAffidabilita.jpeg, id=480, 923.45pt x 542.52687pt>
+ [8 <./img/affidabilita.jpeg>]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 500.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 500.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 500.
+
+[9]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 546.
+<img/modelloAffidabilita.jpeg, id=445, 923.45pt x 542.52687pt>
 File: img/modelloAffidabilita.jpeg Graphic file (type jpg)
 <use img/modelloAffidabilita.jpeg>
 Package pdftex.def Info: img/modelloAffidabilita.jpeg  used on input line 574.
 (pdftex.def)             Requested size: 256.0748pt x 150.44122pt.
  [10 <./img/modelloAffidabilita.jpeg>] [11]
 Capitolo 2.
-<img/Tabella_livello_fisico.png, id=493, 1139.25626pt x 357.335pt>
+<img/Tabella_livello_fisico.png, id=459, 1139.25626pt x 357.335pt>
 File: img/Tabella_livello_fisico.png Graphic file (type png)
 <use img/Tabella_livello_fisico.png>
 Package pdftex.def Info: img/Tabella_livello_fisico.png  used on input line 626.
@@ -1103,7 +1117,7 @@ File: img/Tabella_livello_fisico.png Graphic file (type png)
 Package pdftex.def Info: img/Tabella_livello_fisico.png  used on input line 657.
 (pdftex.def)             Requested size: 426.79134pt x 133.86398pt.
  [13 <./img/Tabella_livello_fisico.png>]
-<img/esempio_index.jpeg, id=506, 2105.8675pt x 938.50626pt>
+<img/esempio_index.jpeg, id=472, 2105.8675pt x 938.50626pt>
 File: img/esempio_index.jpeg Graphic file (type jpg)
 <use img/esempio_index.jpeg>
 Package pdftex.def Info: img/esempio_index.jpeg  used on input line 667.
@@ -1125,7 +1139,7 @@ Capitolo 3.
 [22
 
 ] [23] [24] [25] [26]
-<img/Tabella_gestione_lock.png, id=597, 1046.40938pt x 509.905pt>
+<img/Tabella_gestione_lock.png, id=563, 1046.40938pt x 509.905pt>
 File: img/Tabella_gestione_lock.png Graphic file (type png)
 <use img/Tabella_gestione_lock.png>
 Package pdftex.def Info: img/Tabella_gestione_lock.png  used on input line 1299.
@@ -1134,32 +1148,29 @@ Package pdftex.def Info: img/Tabella_gestione_lock.png  used on input line 1299.
 Capitolo 4.
 [31
 
-] [32] [33] [34] [35] [36]
-Capitolo 5.
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1681.
-[37
-
 ]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1705.
- [38] [39] (./tecnologie.aux)
+<img/z-way-merge-sort.png, id=594, 691.08188pt x 419.5675pt>
+File: img/z-way-merge-sort.png Graphic file (type png)
+<use img/z-way-merge-sort.png>
+Package pdftex.def Info: img/z-way-merge-sort.png  used on input line 1474.
+(pdftex.def)             Requested size: 284.52756pt x 172.74081pt.
+ [32] [33 <./img/z-way-merge-sort.png>] [34] [35] [36] (./tecnologie.aux)
 Package rerunfilecheck Info: File `tecnologie.out' has not changed.
-(rerunfilecheck)             Checksum: 026EA065CDAE1A6E2421AF97937A50FC;10897.
+(rerunfilecheck)             Checksum: 642FEAFC3E9455D35761CF135DCB2FF9;10103.
  ) 
 Here is how much of TeX's memory you used:
- 53630 strings out of 478268
- 1290798 string characters out of 5846347
- 1763238 words of memory out of 5000000
- 70861 multiletter control sequences out of 15000+600000
- 480864 words of font info for 72 fonts, out of 8000000 for 9000
+ 53473 strings out of 478268
+ 1288530 string characters out of 5846347
+ 1757257 words of memory out of 5000000
+ 70733 multiletter control sequences out of 15000+600000
+ 482327 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,19n,92p,1659b,1850s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on tecnologie.pdf (40 pages, 1614349 bytes).
+ 94i,19n,92p,1659b,1186s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on tecnologie.pdf (37 pages, 1686352 bytes).
 PDF statistics:
- 822 PDF objects out of 1000 (max. 8388607)
- 727 compressed objects within 8 object streams
- 203 named destinations out of 1000 (max. 500000)
- 581 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 749 PDF objects out of 1000 (max. 8388607)
+ 654 compressed objects within 7 object streams
+ 169 named destinations out of 1000 (max. 500000)
+ 538 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -13,8 +13,8 @@
 \contentsline {subsubsection}{Gestione delle pagine}{7}{section*.9}%
 \contentsline {subsection}{\numberline {1.2.2}Primitive per la gestione del buffer}{8}{subsection.1.2.2}%
 \contentsline {subsection}{\numberline {1.2.3}Gestore dell'affidabilità}{8}{subsection.1.2.3}%
-\contentsline {subsection}{\numberline {1.2.4}Gestione del file di LOG}{9}{subsection.1.2.4}%
-\contentsline {subsubsection}{Regole di scrittura sul LOG}{10}{section*.11}%
+\contentsline {subsection}{\numberline {1.2.4}Gestione del file di $\texttt {LOG}$}{9}{subsection.1.2.4}%
+\contentsline {subsubsection}{Regole di scrittura sul \texttt {LOG}}{10}{section*.11}%
 \contentsline {subsubsection}{Azione di commit}{10}{section*.12}%
 \contentsline {subsubsection}{Gestore dell'affidabilità}{10}{section*.13}%
 \contentsline {subsection}{\numberline {1.2.5}Ripresa a caldo}{11}{subsection.1.2.5}%
@@ -41,8 +41,8 @@
 \contentsline {subsubsection}{Esempio fan-out 4}{18}{section*.24}%
 \contentsline {subsection}{\numberline {2.4.3}Operazioni}{18}{subsection.2.4.3}%
 \contentsline {subsubsection}{Ricerca}{18}{section*.26}%
-\contentsline {subsubsection}{Inserimento con chiave K}{18}{section*.27}%
-\contentsline {subsubsection}{Cancellazione con chiave K}{19}{section*.28}%
+\contentsline {subsubsection}{Inserimento con chiave $\texttt {K}$}{18}{section*.27}%
+\contentsline {subsubsection}{Cancellazione con chiave $\texttt {K}$}{19}{section*.28}%
 \contentsline {section}{\numberline {2.5}Hash}{19}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Operazioni}{19}{subsection.2.5.1}%
 \contentsline {subsubsection}{Ricerca}{19}{section*.29}%
@@ -92,11 +92,3 @@
 \contentsline {subsection}{\numberline {4.3.2}Merge-Scan Join}{35}{subsection.4.3.2}%
 \contentsline {subsection}{\numberline {4.3.3}Hash-based Join}{35}{subsection.4.3.3}%
 \contentsline {subsection}{\numberline {4.3.4}Scelta finale del piano di esecuzione}{36}{subsection.4.3.4}%
-\contentsline {chapter}{\numberline {5}XML}{37}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Sintassi di base}{37}{section.5.1}%
-\contentsline {subsubsection}{Esempio}{37}{section*.52}%
-\contentsline {subsection}{\numberline {5.1.1}Sintassi}{38}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Elementi o attributi}{38}{subsection.5.1.2}%
-\contentsline {subsubsection}{Intestazione dei documenti XML}{38}{section*.53}%
-\contentsline {subsection}{\numberline {5.1.3}Validazione dei documenti XML}{39}{subsection.5.1.3}%
-\contentsline {section}{\numberline {5.2}XML Schema}{39}{section.5.2}%
